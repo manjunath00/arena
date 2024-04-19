@@ -1,25 +1,32 @@
 pipeline {
-    agent any 
+    agent any
 
-    tools {
-        nodejs "16.20.2"
+    triggers {
+        pollSCM('* * * * *')
     }
 
     stages {
-        stage('build') {
+        stage('Git Pull') {
             steps {
-                sh "npm install"
-                sh "npm run build"
+                dir('/home/pradmin/repo/web/arena') {
+                    deleteDir()
+
+                    // Checkout code from Git repository
+                    git branch: 'main', url: 'https://github.com/manjunath00/arena.git'
+                }
             }
         }
 
-        stage('deploy') {
+        stage('NPM Install') {
             steps {
-                sh "rm -r /var/www/jenkins-test"
-                sh "cp -r ${WORKSPACE}/build/ /var/www/jenkins-test/" 
+                script {
+
+                dir('/home/pradmin/repo/web/arena/') {
+                    sh "rm -r /var/www/jenkins-test"
+                    sh "cp -r ${WORKSPACE}/build/ /var/www/jenkins-test/" 
+                }
+                }
             }
         }
     }
-
-    
 }
