@@ -23,6 +23,16 @@ pipeline {
 
                 dir('/home/pradmin/repo/web/arena/') {
                     sh "npm i && npm run build"
+                }
+                }
+            }
+        }
+
+        stage('Copy the files') {
+            steps {
+                script {
+
+                dir('/home/pradmin/repo/web/arena/') {
                     sh "rm -rf /var/www/jenkins-test/*"
                     sh "rsync -av ${WORKSPACE}/build/* /var/www/jenkins-test/" 
                 }
