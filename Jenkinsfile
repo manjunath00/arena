@@ -23,7 +23,8 @@ pipeline {
 
                 dir('/home/pradmin/repo/web/arena/') {
                     sh "npm i && npm run build"
-                    // sh "rsync -av ${WORKSPACE}/build/* /var/www/jenkins-test/" 
+                    sh "rm -rf /var/www/jenkins-test/*"
+                    sh "rsync -av ${WORKSPACE}/build/* /var/www/jenkins-test/" 
                 }
                 }
             }
