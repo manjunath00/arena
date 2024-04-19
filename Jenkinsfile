@@ -22,7 +22,7 @@ pipeline {
                 script {
 
                 dir('/home/pradmin/repo/web/arena/') {
-                    sh "rsync -av --delete ${WORKSPACE}/build/ /var/www/jenkins-test/" 
+                    sh "rsync -av --delete ${WORKSPACE}/build/* /var/www/jenkins-test/" 
                 }
                 }
             }
