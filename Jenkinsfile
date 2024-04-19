@@ -22,8 +22,7 @@ pipeline {
                 script {
 
                 dir('/home/pradmin/repo/web/arena/') {
-                    sh "rm -r /var/www/jenkins-test/*"
-                    sh "cp -r ${WORKSPACE}/build/ /var/www/jenkins-test/" 
+                    sh "rsync -av --delete ${WORKSPACE}/build/ /var/www/jenkins-test/" 
                 }
                 }
             }
