@@ -22,6 +22,7 @@ pipeline {
                 script {
 
                 dir('/home/pradmin/repo/web/arena/') {
+                    sh "npm i && npm run build"
                     sh "rsync -av ${WORKSPACE}/build/* /var/www/jenkins-test/" 
                 }
                 }
