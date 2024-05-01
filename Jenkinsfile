@@ -49,6 +49,8 @@ pipeline {
 
                         echo "$SSH_KEY | base64"
 
+                        echo "Hello there"
+
                         // sh "echo 'Testing SSH connection' && ssh -i ${SSH_KEY} pradmin@discovery1.pickright.internal 'echo SSH connection successful'"
 
                         sh "rsync -avz -e ssh  $sourceDirectory pradmin@web:/var/www/arena/"
