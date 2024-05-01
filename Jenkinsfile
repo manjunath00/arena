@@ -53,7 +53,7 @@ pipeline {
 
                         // sh "echo 'Testing SSH connection' && ssh -i ${SSH_KEY} pradmin@discovery1.pickright.internal 'echo SSH connection successful'"
 
-                        sh "rsync -avz -e ssh  $sourceDirectory pradmin@discovery1.pickright.internal:/var/www/arena/"
+                        sh "rsync -avz -e ssh -v $sourceDirectory pradmin@discovery1.pickright.internal:/var/www/arena/"
                     }
                 }
             }
