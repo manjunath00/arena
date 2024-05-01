@@ -25,6 +25,7 @@ pipeline {
 
                 dir('/home/pradmin/repo/web/arena/') {
                     sh "npm i && npm run build"
+                    sh "echo $(pwd)"
                 }
                 }
             }
