@@ -41,19 +41,18 @@ pipeline {
                     // Replace 'user@hostname' with the appropriate credentials for the destination machine
                     // Replace '<destination_directory>' with the desired destination directory on the remote machine
                     withCredentials([sshUserPrivateKey(credentialsId: 'jenkins-ssh-key', keyFileVariable: 'SSH_KEY')]) {
-                        environment {
-                            SSH_KEY = credentials('jenkins-ssh-key')
-                        }
+                        // environment {
+                        //     SSH_KEY = credentials('jenkins-ssh-key')
+                        // }
 
-                        echo "SSH Key: ${SSH_KEY}"
+                        // echo "SSH Key: ${SSH_KEY}"
 
-                        echo "$SSH_KEY | base64"
-
-                        echo "Hello there"
+                        // echo "Hello there"
 
                         // sh "echo 'Testing SSH connection' && ssh -i ${SSH_KEY} pradmin@discovery1.pickright.internal 'echo SSH connection successful'"
 
-                        sh "rsync -avz -e ssh -v $sourceDirectory pradmin@discovery1.pickright.internal:/var/www/arena/"
+                        sh "rsync -avz -e 'ssh -i ${SSH_KEY}' pradmin@discovery1.pickright.internal:/var/www/arena/"
+                        // sh "rsync -avz -e ssh -v $sourceDirectory pradmin@discovery1.pickright.internal:/var/www/arena/"
                     }
                 }
             }
