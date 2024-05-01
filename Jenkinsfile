@@ -40,8 +40,12 @@ pipeline {
                     // Replace 'your_ssh_credential_id' with the ID of your SSH credentials
                     // Replace 'user@hostname' with the appropriate credentials for the destination machine
                     // Replace '<destination_directory>' with the desired destination directory on the remote machine
-                    withCredentials([sshUserPrivateKey(credentialsId: 'jenkins-ssh-key	', keyFileVariable: 'SSH_KEY')]) {
-                        sh "rsync -avz -e 'ssh -i $SSH_KEY' $sourceDirectory pradmin@discovery1.pickright.internal:/var/www/arena/"
+                    withCredentials([sshUserPrivateKey(credentialsId: 'jenkins-ssh-key', keyFileVariable: 'SSH_KEY')]) {
+                        environment {
+                            SSH_KEY = credentials('jenkins-ssh-key')
+                        }
+
+                        sh "rsync -avz -e 'ssh -i \$SSH_KEY' $sourceDirectory pradmin@discovery1.pickright.internal:/var/www/arena/"
                     }
                 }
             }
