@@ -30,16 +30,12 @@ pipeline {
             }
         }
 
-        // stage('Copy the files') {
-        //     steps {
-        //         script {
-
-        //         dir('/home/pradmin/repo/web/arena/') {
-        //             sh "rm -rf /var/www/jenkins-test/*"
-        //             sh "rsync -av ${WORKSPACE}/build/* /var/www/jenkins-test/" 
-        //         }
-        //         }
-        //     }
-        // }
+        stage('Copy the files') {
+            steps {
+                script {
+                    sh 'rsync -avz build/* pradmin@discovery1.pickright.internal:/var/www/arena/'
+                }
+            }
+        }
     }
 }
