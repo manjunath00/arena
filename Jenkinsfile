@@ -45,7 +45,7 @@ pipeline {
                             SSH_KEY = credentials('jenkins-ssh-key')
                         }
 
-                        sh "echo Hello there ${SSH_KEY}"
+                        echo "SSH Key: ${SSH_KEY}"
 
                         sh "rsync -avz -e 'ssh -i ${SSH_KEY}' $sourceDirectory pradmin@discovery1.pickright.internal:/var/www/arena/"
                     }
