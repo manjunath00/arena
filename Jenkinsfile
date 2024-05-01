@@ -1,9 +1,11 @@
 pipeline {
     agent any
 
-    triggers {
-        pollSCM('* * * * *')
-    }
+    // triggers {
+    //     pollSCM('* * * * *')
+    // }
+
+    tools {nodejs "nodejs"}
 
     stages {
         stage('Git Pull') {
